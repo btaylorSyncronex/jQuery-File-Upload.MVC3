@@ -19,6 +19,11 @@ namespace jQuery_File_Upload.MVC3.Controllers
             return View();
         }
 
+
+        public string LetTheGamesBegin()
+        {
+            return  "<tr><td colspan=5>HELLO WORLD</td></tr>";
+        }
         //DONT USE THIS IF YOU NEED TO ALLOW LARGE FILES UPLOADS
         [HttpGet]
         public void Delete(string id)

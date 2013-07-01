@@ -193,5 +193,12 @@ namespace jQuery_File_Upload.MVC3.Upload
             context.Response.ContentType = "application/json";
         }
 
+
+
+
+
+
+
+
     }
 }

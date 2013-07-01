@@ -1,4 +1,6 @@
-﻿@using ClientDependency.Core.Mvc
+﻿@using ClientDependency.Core
+@using ClientDependency.Core.Mvc
+
 
 @{
     ViewBag.Title = "Bootstrap version demo";
@@ -78,7 +80,10 @@ PER ACTION BASIS *@
         <div class="fileupload-loading"></div>
         <br>
         <!-- The table listing the files available for upload/download -->
-        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+        <table class="table table-striped">
+            <thead><tr><td style="width:10px;"><td>Thumbnail</td><td>File Name</td><td>File Size</td><td colspan="2"></td></tr></thead>
+            <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery">
+       </tbody></table>
     </form>
     
     <!-- modal-gallery is the modal dialog used for the image gallery -->
@@ -112,6 +117,7 @@ PER ACTION BASIS *@
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">
+        <td style="width:10px;"></td>
         <td class="preview"><span class="fade"></span></td>
         <td class="name"><span>{%=file.name%}</span></td>
         <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
@@ -143,7 +149,14 @@ PER ACTION BASIS *@
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-download fade">
-        {% if (file.error) { %}
+        <td class="delete" style="width:10px;">
+            <button style="width:0px; visibility: hidden;" class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+                <i class="icon-trash icon-white"></i>
+                <span>{%=locale.fileupload.destroy%}</span>
+            </button>
+            <input type="checkbox" name="delete" value="1">
+        </td>
+            {% if (file.error) { %}
             <td></td>
             <td class="name"><span>{%=file.name%}</span></td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
@@ -158,13 +171,8 @@ PER ACTION BASIS *@
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
             <td colspan="2"></td>
         {% } %}
-        <td class="delete">
-            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-                <i class="icon-trash icon-white"></i>
-                <span>{%=locale.fileupload.destroy%}</span>
-            </button>
-            <input type="checkbox" name="delete" value="1">
-        </td>
+    <!--
+ -->
     </tr>
 {% } %}
 </script>

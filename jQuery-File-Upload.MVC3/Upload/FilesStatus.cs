@@ -17,6 +17,7 @@ namespace jQuery_File_Upload.MVC3.Upload
         public string delete_url { get; set; }
         public string delete_type { get; set; }
         public string error { get; set; }
+        public string test { get; set; }
 
         public FilesStatus() { }
 
